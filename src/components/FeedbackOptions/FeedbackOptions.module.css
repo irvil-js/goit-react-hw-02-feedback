@@ -1,23 +1,30 @@
-.btnList {
-  display: flex;
-  list-style: none;
-  padding: 0;
-}
+.buttonContainer {
+  width: 400px;
+  margin: 10px auto;
 
-.item:not(:last-child) {
-  margin-right: 20px;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .button {
+  display: inline-block;
   width: 100px;
   height: 50px;
+  line-height: 50px;
   font-size: 20px;
-  color: #fff;
-  background-color: #2b92ff;
-  border-radius: 5px;
+  text-align: center;
+  outline: none;
+  border: none;
+  border-radius: 100px;
+  color: rgb(240, 11, 190);
 }
 
-.button:hover,
-.button:focus {
-  background-color: #2b05ff;
+.button:hover {
+  color: rgb(224, 164, 211);
+  cursor: pointer;
+  background-color: blueviolet;
+}
+
+.button:active {
+  color: rgb(224, 164, 211);
 }
