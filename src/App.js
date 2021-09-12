@@ -11,7 +11,7 @@ class App extends Component {
     bad: 0,
   };
 
-  handleClick = (e) => {
+  handlerClick = (e) => {
     const name = e.target.name;
     this.setState((state) => ({
       state,
@@ -19,22 +19,40 @@ class App extends Component {
     }));
   };
 
-  countTotalFeedback = () =>
-    this.state.good + this.state.neutral + this.state.bad;
+  // countTotalFeedback = () =>
+  //   this.state.good + this.state.neutral + this.state.bad;
 
-  countPositiveFeedbackPercentage = () =>
-    this.state.good
-      ? Math.round((this.state.good / this.countTotalFeedback()) * 100)
-      : 0;
+  // countPositiveFeedbackPercentage = () =>
+  //   this.state.good
+  //     ? Math.round((this.state.good / this.countTotalFeedback()) * 100)
+  //     : 0;
+
+  countTotalFeedback = () => {
+    const { good, neutral, bad } = this.state;
+    const total = good + neutral + bad;
+
+    return total;
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    const { good } = this.state;
+    const totalFeedback = this.countTotalFeedback();
+    const positiveFeedback = Math.round((good / totalFeedback) * 100);
+
+    return positiveFeedback ? positiveFeedback : 0;
+  };
 
   render() {
     const { good, neutral, bad } = this.state;
+    const totalFeedback = this.countTotalFeedback();
+    const positiveFeedbackPercentage = this.countPositiveFeedbackPercentage();
+
     return (
       <>
         <Section title="Please leave feedback">
           <FeedbackOptions
             options={Object.keys(this.state)}
-            onLeaveFeedback={this.handleClick}
+            onLeaveFeedback={this.handlerClick}
           />
         </Section>
         {this.countTotalFeedback() ? (
@@ -43,8 +61,8 @@ class App extends Component {
               good={good}
               neutral={neutral}
               bad={bad}
-              total={this.countTotalFeedback()}
-              positivePercentage={this.countPositiveFeedbackPercentage()}
+              total={totalFeedback}
+              positivePercentage={positiveFeedbackPercentage}
             />
           </Section>
         ) : (
