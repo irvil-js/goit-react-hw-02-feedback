@@ -14,7 +14,7 @@ class App extends Component {
   handleClick = (e) => {
     const name = e.target.name;
     this.setState((state) => ({
-      ...state,
+      state,
       [name]: this.state[name] + 1,
     }));
   };
