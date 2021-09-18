@@ -11,7 +11,7 @@ class App extends Component {
     bad: 0,
   };
 
-  handlerClick = (e) => {
+  handleClick = (e) => {
     const name = e.target.name;
     this.setState((state) => ({
       state,
@@ -52,7 +52,7 @@ class App extends Component {
         <Section title="Please leave feedback">
           <FeedbackOptions
             options={Object.keys(this.state)}
-            onLeaveFeedback={this.handlerClick}
+            onLeaveFeedback={this.handleClick}
           />
         </Section>
         {this.countTotalFeedback() ? (
